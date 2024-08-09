@@ -24,6 +24,7 @@
 """
 Test tools for mapping between node sets of different tree sequences
 """
+
 from collections import defaultdict
 from itertools import combinations
 
@@ -35,7 +36,6 @@ import tsinfer
 import tskit
 
 from tsdate import evaluation
-
 
 # --- simulate test case ---
 demo = msprime.Demography.isolated_model([1e4])
@@ -73,7 +73,7 @@ def naive_shared_node_spans(ts, other):
     assert ts.sequence_length == other.sequence_length
     assert ts.num_samples == other.num_samples
     out = np.zeros((ts.num_nodes, other.num_nodes))
-    for (interval, query_tree, target_tree) in ts.coiterate(other):
+    for interval, query_tree, target_tree in ts.coiterate(other):
         query = _clade_dict(query_tree)
         target = _clade_dict(target_tree)
         span = interval.right - interval.left

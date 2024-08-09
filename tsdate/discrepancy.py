@@ -22,6 +22,7 @@
 """
 Tools for comparing node times between tree sequences with different node sets
 """
+
 import copy
 from collections import defaultdict
 from itertools import product
@@ -74,7 +75,7 @@ class CladeMap:
             node = self.tree.parent(node)
         return nodes
 
-    def next(self):  # noqa: A003
+    def next(self):
         """
         Advance to the next tree, returning the difference between trees as a
         dictionary of the form `node : (last_clade, next_clade)`
@@ -202,7 +203,7 @@ def shared_node_spans(ts, other):
         for clade_map in (query, target):
             if clade_map.interval[1] == right:
                 clade_diff = clade_map.next()
-                for (prev, curr) in clade_diff.values():
+                for prev, curr in clade_diff.values():
                     if prev != nil:
                         modified.add(prev)
                     if curr != nil:
